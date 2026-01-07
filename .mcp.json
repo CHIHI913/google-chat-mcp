@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "google-chat": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "CLIENT_SECRET_PATH": "./credentials/client_secret.json",
+        "TOKEN_PATH": "./credentials/token.json"
+      }
+    }
+  }
+}
