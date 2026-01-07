@@ -46,7 +46,19 @@ Google Chat API を利用した MCP (Model Context Protocol) サーバーです�
 5. 承認済みのリダイレクトURI: `http://localhost:8080/callback` を追加
 6. 作成 → JSON をダウンロード
 
-### 4. クレデンシャルの配置
+### 4. Chat App の設定（必須）
+
+1. 「APIとサービス」→「有効なAPIとサービス」→「Google Chat API」
+2. 「構成」タブを開く
+3. 以下を設定:
+   - **アプリ名**: 任意の名前
+   - **アバターURL**: 任意の画像URL（必須）
+   - **説明**: 任意
+   - **接続設定**: 「HTTP エンドポイント URL」を選択し、`https://example.com` を入力（実際には使用しません）
+   - **公開設定**: 「内部」または「特定のユーザー」を選択
+4. 「保存」をクリック
+
+### 5. クレデンシャルの配置
 
 ```bash
 mkdir -p credentials
@@ -54,7 +66,7 @@ mkdir -p credentials
 mv ~/Downloads/client_secret_*.json credentials/client_secret.json
 ```
 
-### 5. 依存関係のインストールとビルド
+### 6. 依存関係のインストールとビルド
 
 ```bash
 pnpm install
@@ -111,8 +123,9 @@ list_messages
   pageSize: 10
 ```
 
-## 注意事項
+## 制限事項
 
+- **ダイレクトメッセージ（DM）は取得できません** - Google Chat API の仕様により、人間同士の DM は API で取得できません
 - OAuth2 認証を使用するため、個人の Google アカウントでアクセス可能なスペースのみ操作できます
 - Chat API のクォータ制限に注意してください
 - トークンの有効期限が切れた場合は自動でリフレッシュされます
